@@ -25,7 +25,8 @@ namespace IEXTrading.Infrastructure.IEXTradingHandler
         ****/
         public List<Company> GetSymbols()
         {
-            string IEXTrading_API_PATH = BASE_URL + "ref-data/symbols";
+            string IEXTrading_API_PATH = BASE_URL + "ref-data/symbols"; 
+         
             string companyList = "";
 
             List<Company> companies = null;
@@ -40,42 +41,40 @@ namespace IEXTrading.Infrastructure.IEXTradingHandler
             if (!companyList.Equals(""))
             {
                 companies = JsonConvert.DeserializeObject<List<Company>>(companyList);
-                companies = companies.GetRange(0, 9);
+                companies = companies.GetRange(0, 75);
             }
             return companies;
         }
 
         /****
-         * Calls the IEX stock API to get 1 year's chart for the supplied symbol. 
+         * Calls the IEX reference API to get the list of symbols - overloading with range values. 
         ****/
-        public List<Equity> GetChart(string symbol)
+        public List<Company> GetSymbols(int startrange, int rangecount)
         {
-            //Using the format method.
-            //string IEXTrading_API_PATH = BASE_URL + "stock/{0}/batch?types=chart&range=1y";
-            //IEXTrading_API_PATH = string.Format(IEXTrading_API_PATH, symbol);
+            string IEXTrading_API_PATH = BASE_URL + "/stock/market/collection/tag?collectionName=Computer%20Hardware";
+            
 
-            string IEXTrading_API_PATH = BASE_URL + "stock/" + symbol + "/batch?types=chart&range=1y";
+            string companyList = "";
 
-            string charts = "";
-            List<Equity> Equities = new List<Equity>();
+            List<Company> companies = null;
+
             httpClient.BaseAddress = new Uri(IEXTrading_API_PATH);
             HttpResponseMessage response = httpClient.GetAsync(IEXTrading_API_PATH).GetAwaiter().GetResult();
             if (response.IsSuccessStatusCode)
             {
-                charts = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            }
-            if (!charts.Equals(""))
-            {
-                ChartRoot root = JsonConvert.DeserializeObject<ChartRoot>(charts, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                Equities = root.chart.ToList();
-            }
-            //make sure to add the symbol the chart
-            foreach (Equity Equity in Equities)
-            {
-                Equity.symbol = symbol;
+                companyList = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             }
 
-            return Equities;
+            if (!companyList.Equals(""))
+            {
+                companies = JsonConvert.DeserializeObject<List<Company>>(companyList);
+                companies = companies.GetRange(startrange, rangecount);
+
+            }
+            return companies;
         }
+
+
+
     }
 }
