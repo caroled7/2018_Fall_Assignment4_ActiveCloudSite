@@ -135,6 +135,32 @@ namespace MVCTemplate.Controllers
             dbContext.SaveChanges();
         }
 
+        public IActionResult StockPickings()
+            {
+                Company companyRead1 = dbContext.Companies
+                .Include(c => c.Equities)
+                .Where(c => (c.close-c.week52High)/(c.week52high-c.week52Low) > 0.82f)
+                .OrderByDescending(c => c)
+                .First();
+
+                Company companyRead2 = dbContext.Companies
+                .Include(c => c.Equities)
+                .Where(c => (c.close-c.week52High)/(c.week52high-c.week52Low) < 0.41f)
+                .OrderBy(c => c)
+                .First();
+
+            string Buy1 = companyRead1[0];
+            string Buy2 = companyRead1[1];
+            string Buy3 = companyRead1[2];
+            string Sell1 = companyRead2[0];
+            string Sell2 = companyRead2[1];
+            string Sell3 = companyRead2[2];
+
+            return View();
+
+            }
+ 
+
 
 
     }

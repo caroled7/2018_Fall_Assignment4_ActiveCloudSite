@@ -1,0 +1,23 @@
+﻿@model IEnumerable<IEXTrading.Models.Company>
+
+    @{
+    ViewData["Title"] = "Quote";
+    }
+
+    <h2>Stock Pickings</h2>
+    <hr />
+
+    @model Company
+
+
+        <p>Buy or Buy Cover 1: @Model.Buy1 </p>
+        <p>Buy or Buy Cover 2: @Model.Buy2 </p>
+        <p>Buy or Buy Cover 3: @Model.Buy3 </p>
+        <p>Sell or Sell Short 1: @Model.Sell1 </p>
+        <p>Sell or Sell Short 2: @Model.Sell2 </p>
+
+
+    <script>
+    getChart("@Model.week52High", "@Model.week52Low", "@Model.close", @Model.Equities);
+    alertDbSave(@ViewBag.dbSuccessChart);
+    </script>
