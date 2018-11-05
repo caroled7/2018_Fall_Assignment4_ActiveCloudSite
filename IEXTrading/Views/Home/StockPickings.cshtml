@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<IEXTrading.Models.Company>
 
     @{
-    ViewData["Title"] = "Quote";
+    ViewData["Title"] = "Stock Picking";
     }
 
     <h2>Stock Pickings</h2>
@@ -18,6 +18,6 @@
 
 
     <script>
-    getChart("@Model.week52High", "@Model.week52Low", "@Model.close", @Model.Equities);
+    getChart("@Model.week52High", "@Model.week52Low", "@Model.close", "@Model.Equities", "@Model.Buy1", "@Model.Buy2", "@Model.Buy3", "@Model.Sell1", "@Model.Sell2", "@Model.Sell3");
     alertDbSave(@ViewBag.dbSuccessChart);
     </script>

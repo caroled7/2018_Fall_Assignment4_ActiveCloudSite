@@ -139,13 +139,13 @@ namespace MVCTemplate.Controllers
             {
                 Company companyRead1 = dbContext.Companies
                 .Include(c => c.Equities)
-                .Where(c => (c.close-c.week52High)/(c.week52high-c.week52Low) > 0.82f)
+                .Where(c => (c.close-c.week52Low)/(c.week52high-c.week52Low) > 0.82f)
                 .OrderByDescending(c => c)
                 .First();
 
                 Company companyRead2 = dbContext.Companies
                 .Include(c => c.Equities)
-                .Where(c => (c.close-c.week52High)/(c.week52high-c.week52Low) < 0.41f)
+                .Where(c => (c.close-c.week52Low)/(c.week52high-c.week52Low) < 0.41f)
                 .OrderBy(c => c)
                 .First();
 
