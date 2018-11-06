@@ -11,7 +11,7 @@
     <select name="symbol">
         @foreach (var company in Model.Companies)
         {
-            <option value=@company.symbol selected>@company.name</option>
+        <option value=@company.symbol selected>@company.companyName</option>
         }
     </select>
     <input type="submit" value="Get Chart" />
