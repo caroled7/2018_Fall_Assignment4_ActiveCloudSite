@@ -52,7 +52,7 @@ namespace IEXTrading.Infrastructure.IEXTradingHandler
         ****/
         public List<Company> GetSymbols(int startrange, int rangecount)
         {
-            string IEXTrading_API_PATH = BASE_URL + "/stock/market/collection/sector?collectionName=Materials";
+            string IEXTrading_API_PATH = BASE_URL + "/stock/market/collection/sector?collectionName=Utilities";
             /* Sector options are:  Communication Services, Consumer Discretionary, Consumer Staples, Energy, Financials
              Health Care, Industrials, Materials, Real Estate, Technology, Utilities */
 
