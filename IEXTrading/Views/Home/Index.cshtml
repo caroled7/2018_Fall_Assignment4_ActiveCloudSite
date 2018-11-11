@@ -7,17 +7,16 @@
 
 <div>
     <p>
+        <h2>Overview</h2>
+        <h3>This application generates top five stock buy picks.</h3>
         <br />
-        <h3>This application generates top five stock buy picks and top five stock sell picks.</h3>
-        <br />
-        <br />
-        The <a asp-area="" asp-controller="Home" asp-action="Symbols">Load Symbols</a> tab fetches symbols data from the
+        The <a asp-area="" asp-controller="Home" asp-action="Symbols">Load Symbols</a> tab fetches stock symbols data from the
         <a href="https://iextrading.com/developer/docs/#collections">IEX Collections API </a> and displays the results.
         Currently only Utilities sector data is fetched. Once the data is saved in the local database, it can be viewed in the Chart tab
-        and it also is the the source data for the Top 5 Picks and Top 5 Sells calculations.
+        and it also is the source data for the Top 5 Picks calculations.
         <br />
         <br />
-        The <a asp-area="" asp-controller="Home" asp-action="Chart">Chart</a> tab lets you select a Company(symbol) and review its history in chart format.
+        The <a asp-area="" asp-controller="Home" asp-action="Chart">Chart</a> tab lets you select a Company (symbol) and review its history in chart format.
         The history can also be saved in the local database.
         <br />
         <br />
@@ -29,14 +28,24 @@
         and we provide the 5 with the highest momentum.
         <br />
         <br />
+        The <a asp-area="" asp-controller="Home" asp-action="Refresh">Refresh</a> tab lets you refresh the local database, that is, remove all its contents.
+        <br />
+        <br />
+        <h2>Self Reflection</h2>
         Dominique - This project helped us to learn both skills to be successful in technology and in business in general. On the technology side,
         this project taught us how to access APIs and create, edit, and delete items in databases. It also helped with giving us the opportunity to use LINQ
-        by creating queries to find certain data within the databases. On the business side it helped us learn to think about how the data is 
-        used by end users as it is important to build technology that is useful to the end users. More specifically we learned to understand how stocks are 
-        picked in the finance world and it had us think of how we would want the system to select stocks to buy. 
+        by creating queries to find certain data within the databases. On the business side it helped us learn to think about how the data is
+        used by end users as it is important to build technology that is useful to the end users. More specifically we learned to understand how stocks are
+        picked in the finance world and it had us think of how we would want the system to select stocks to buy.
         <br />
         <br />
-        The <a asp-area="" asp-controller="Home" asp-action="Refresh">Refresh</a> tab lets you refresh the local database, that is, remove all its contents.
+        Carole - We augmented the database by modifying source of Company data from /ref-data/symbols to /stock/market/collection/sector?collectionName=Utilities.
+        The new Company datasource contains more fields which we used as the foundation of our stock picking calculation.
+        We could further enhance the application by giving options to select which sector to pick from.
+        This was a good learning experience that provides us with a starting point for creating websites of our own in the future.
+        This type of project can always be refined further.  We tried to balance the work effort to make sure
+        we met the main requirements of the exercise, which was to develop a stock picking strategy.
+
     </p>
     <p>
     </p>
