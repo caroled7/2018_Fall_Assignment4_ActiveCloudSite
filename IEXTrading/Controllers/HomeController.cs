@@ -59,7 +59,17 @@ namespace MVCTemplate.Controllers
             
         }
 
+public IActionResult Top5Sell()
+        {
 
+            List<Company> companies = dbContext.Companies.Where(c => ( (c.close - c.week52Low)/ (c.week52High - c.week52Low) < 0.41f ))
+                                                         .OrderByDescending (c => (c.close - c.week52Low) / (c.week52High - c.week52Low)) 
+                                                         .Take(5)
+                                                         .ToList();
+
+            return View(companies);
+           
+        }
 
         /**** OLD VERSION
          * The Symbols action calls the GetSymbols method that returns a list of Companies.
